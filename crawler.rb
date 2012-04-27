@@ -13,8 +13,8 @@ class MasterCrawler
   name = "stylinonline"
   produto = "joker_hoodie"
   
-  preco "xpath=//div[@class='saleprice-dec']/font/span"
-  estoque "xpath=//div[@class='outStock-61011']" # se tiver em estoque a class é 'inStock-61011'  
+  preco "css=div.saleprice-dec font span"
+  estoque "css=div.inStock-61011"
   #TODO persiste no mongo
 
 end
