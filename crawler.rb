@@ -1,9 +1,9 @@
 require 'wombat'
+require 'watir'
 
 class MasterCrawler
   include Wombat::Crawler
 
-  #TODO pegar da yml
   base_url "http://www.stylinonline.com"
   
   #TODO pegar da yml
