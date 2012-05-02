@@ -1,0 +1,12 @@
+site1: site1
+    produto: /produto1
+    produto: /produto2
+    produto: /produto3
+        
+site2: site2 
+    produto: /produto1
+    produto: /produto2
+    produto: /produto3
+        
+
+    
