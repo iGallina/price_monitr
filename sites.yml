@@ -1,12 +1,16 @@
-site1: site1
-    produto: /produto1
-    produto: /produto2
-    produto: /produto3
-        
-site2: site2 
-    produto: /produto1
-    produto: /produto2
-    produto: /produto3
-        
-
-    
+site1:
+  base_url: http://www.stylinonline.com
+  regra_preco: css=div.saleprice-dec font span
+  regra_estoque: css=div.inStock-61011
+  produtos:
+    produto1:
+      url: /hoodie-batman-joker-face-view-zip.html
+      nome: Joker Costume Hoodie
+      rules:
+        rule1: rule1
+    produto2:
+      url: /jersey-star-wars-vader-helmet-baseball.html
+      nome: Star Wars Vader Baseball Jersey
+      rules:
+        rule1: rule1
+        rule2: rule2

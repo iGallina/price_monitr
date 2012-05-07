@@ -1,9 +1,29 @@
-#require 'sequel'
-#Ou usar YML ?
+require 'sequel'
+require 'sqlite3'
 
-#postgres ou mongo?
+# connect to an in-memory database
+DB = Sequel.sqlite
 
-# TODO ta dando erro no yaml de parsing sei lá pq..
-require 'yaml'
-sites = YAML::load_file('sites.yml')
-puts sites.inspect
+# create an items table
+DB.create_table :produtos do
+  primary_key :id
+  String :url
+  Float :preco
+  Boolean :estoque
+end
+
+# create a dataset from the items table
+produtos = DB[:produtos]
+
+
+# populate the table
+produtos.insert(:url => 'alguma url', :preco => 100, :estoque => true)
+
+
+# print out the number of records
+puts "Produto count: #{produtos.count}"
+
+puts "Produto url: #{produtos.select(:url).first}"
+
+# print out the average price
+#puts "Produto #{Produtos.first}"
