@@ -13,4 +13,4 @@ site1:
       nome: Star Wars Vader Baseball Jersey
       rules:
         rule1: preco_10%
-        rule2: preco_5%
+        rule2: estoque_sim

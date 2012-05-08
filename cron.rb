@@ -10,7 +10,7 @@ class Cron
   end
   
   def executar!
-    # le da yml quais sites a serem peneirados
+    # le da yml quais sites a serem analisados
     @sites = YAML::load_file('sites.yml')
     
     @sites.each do |site|
@@ -27,7 +27,7 @@ class Cron
 
         # acessa o site e recupera os dados
         puts "Acessando: #{base_url}#{produto_url}"
-        produto_atual = {:preco => 110.0}
+        produto_atual = {:preco => 110.0, :estoque => true}
 
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
@@ -39,15 +39,16 @@ class Cron
             argumento = rule[1].split("_")[1]
 
             if self.respond_to? metodo
-              puts "Executando metodo #{metodo} com argumento #{argumento}"
+              puts "Executando rule #{metodo} com argumento #{argumento}"
               
               # se a verificacao passou
               if send(metodo, db_produtos, produto_atual, argumento)
                 #chamar o notifier.rb para informar que encontrou algo
+                puts "sim"
               end
               
             else
-              #chamar o notifier.rb para falar que o yaml está errado
+              #chamar o notifier.rb para falar que o yml está errado
               raise "[ERRO] Metodo :#{metodo} nao existe!"
             end
           end
@@ -76,6 +77,16 @@ class Cron
     limite = media * percento
     
     preco_atual >= (media + limite) || preco_atual <= (media - limite)
+  end
+  
+  def estoque produtos, produto_atual, estoque
+    if estoque == "sim"
+      bool = true
+    else
+      bool = false
+    end
+    
+    produto_atual[:estoque] == bool
   end
   
 end
