@@ -29,6 +29,8 @@ class DBUtil
 end
 
 db_util = DBUtil.new
-produto = db_util.get_produto "alguma url"
 
+db_util.add_produto("url1", 10.0, true) if db_util.get_produto("url1").nil?
+
+produto = db_util.get_produto "url1"
 puts produto.inspect
