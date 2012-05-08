@@ -21,6 +21,11 @@ class DBUtil
     produtos[:url => url]
   end
   
+  def add_produto url, preco, estoque
+    produtos = @DB[:produtos]
+    produtos.insert(:url => url, :preco => preco, :estoque => estoque)
+  end
+  
 end
 
 db_util = DBUtil.new
