@@ -14,15 +14,15 @@ class Cron
     @sites = YAML::load_file('sites.yml')
     
     @sites.each do |site|
-      base_url = site[1]['base_url']
-      regra_preco = site[1]['regra_preco']
-      regra_estoque = site[1]['regra_estoque']
+      base_url = site[1][:base_url]
+      regra_preco = site[1][:regra_preco]
+      regra_estoque = site[1][:regra_estoque]
 
       produtos = site[1]['produtos']
       produtos.each do |produto|
         key = produto[0]
         produto_url = produto[1]['url']
-        nome = produto[1]['nome']
+        nome = produto[1][:nome]
         rules = produto[1]['rules']
 
         # acessa o site e recupera os dados
