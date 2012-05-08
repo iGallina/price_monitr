@@ -1,29 +1,29 @@
 require 'sequel'
 require 'sqlite3'
 
-# connect to an in-memory database
-DB = Sequel.sqlite
-
-# create an items table
-DB.create_table :produtos do
-  primary_key :id
-  String :url
-  Float :preco
-  Boolean :estoque
+class DBUtil
+  
+  def initialize
+    # conecta ao banco de dados SQLite3
+    @DB = Sequel.connect('sqlite://database/produtos.db')
+    
+    # cria a tebale de produtos apenas se ela não existir
+    @DB.create_table? :produtos do
+      primary_key :id
+      String :url
+      Float :preco
+      Boolean :estoque
+    end
+  end
+  
+  def get_produto url
+    produtos = @DB[:produtos]
+    produtos[:url => url]
+  end
+  
 end
 
-# create a dataset from the items table
-produtos = DB[:produtos]
+db_util = DBUtil.new
+produto = db_util.get_produto "alguma url"
 
-
-# populate the table
-produtos.insert(:url => 'alguma url', :preco => 100, :estoque => true)
-
-
-# print out the number of records
-puts "Produto count: #{produtos.count}"
-
-puts "Produto url: #{produtos.select(:url).first}"
-
-# print out the average price
-#puts "Produto #{Produtos.first}"
+puts produto.inspect
