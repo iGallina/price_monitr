@@ -7,10 +7,10 @@ site1:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
       rules:
-        rule1: rule1
+        rule1: preco_20%
     produto2:
       url: /jersey-star-wars-vader-helmet-baseball.html
       nome: Star Wars Vader Baseball Jersey
       rules:
-        rule1: rule1
-        rule2: rule2
+        rule1: preco_10%
+        rule2: preco_5%
