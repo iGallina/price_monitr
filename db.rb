@@ -3,6 +3,8 @@ require 'sqlite3'
 
 class DBUtil
   
+  MAX_ROWS = 3
+  
   def initialize
     # conecta ao banco de dados SQLite3
     @DB = Sequel.connect('sqlite://database/produtos.db')
@@ -10,27 +12,24 @@ class DBUtil
     # cria a tebale de produtos apenas se ela não existir
     @DB.create_table? :produtos do
       primary_key :id
+      String :key
       String :url
       Float :preco
       Boolean :estoque
     end
+    
+    @produtos = @DB[:produtos]
   end
   
-  def get_produto url
-    produtos = @DB[:produtos]
-    produtos[:url => url]
+  def get_produtos key, url
+    @produtos.filter :key => key, :url => url
   end
   
-  def add_produto url, preco, estoque
-    produtos = @DB[:produtos]
-    produtos.insert(:url => url, :preco => preco, :estoque => estoque)
+  def add_produto key, url, preco, estoque
+    if get_produtos(key, url).count >= MAX_ROWS
+      @produtos.filter(:key => key, :url => url, :id => @produtos.min(:id)).delete
+    end
+    @produtos.insert(:key => key, :url => url, :preco => preco, :estoque => estoque)
   end
   
 end
-
-db_util = DBUtil.new
-
-db_util.add_produto("url1", 10.0, true) if db_util.get_produto("url1").nil?
-
-produto = db_util.get_produto "url1"
-puts produto.inspect
