@@ -41,7 +41,7 @@ class Cron
             if self.respond_to? metodo
               puts "Executando rule #{metodo} com argumento #{argumento}"
               
-              # se a verificacao passou
+              # verifica se a rule passou
               if send(metodo, db_produtos, produto_atual, argumento)
                 #chamar o notifier.rb para informar que encontrou algo
                 puts "sim"
