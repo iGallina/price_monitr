@@ -1,5 +1,5 @@
 gem 'poltergeist'
-gem 'whenever', :require => false
+gem 'rufus-scheduler'
 gem 'capybara'
 gem 'twitter'
 gem 'sequel'
