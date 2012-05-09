@@ -32,33 +32,34 @@ class PriceMonitr
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
 
-        unless db_produtos.nil?
-          puts "Aplicando rules: "
-          rules.each do |rule|
-            metodo = rule[1].split("_")[0]
-            argumento = rule[1].split("_")[1]
-
-            if self.respond_to? metodo
-              puts "Executando rule #{metodo} com argumento #{argumento}"
-              
-              # verifica se a rule passou
-              if send(metodo, db_produtos, produto_atual, argumento)
-                #chamar o notifier.rb para informar que encontrou algo
-                puts "sim"
-              end
-              
-            else
-              #chamar o notifier.rb para falar que o yml está errado
-              raise "[ERRO] Metodo :#{metodo} nao existe!"
-            end
-          end
+        unless db_produtos.nil?        
+          aplicar_rules! rules, db_produtos, produto_atual
         end
 
         # adiciona no banco o novo produto
-        preco = 100.0
-        estoque = true
-        @db_util.add_produto key, produto_url, preco, estoque
+        @db_util.add_produto key, produto_url, produto_atual[:preco], produto_atual[:estoque]
+      end
+    end
+  end
+  
+  def aplicar_rules! rules, produtos, produto_atual
+    puts "Aplicando rules: "
+    rules.each do |rule|
+      metodo = rule[1].split("_")[0]
+      argumento = rule[1].split("_")[1]
 
+      if self.respond_to? metodo
+        puts "Executando rule #{metodo} com argumento #{argumento}"
+        
+        # verifica se a rule passou
+        if send(metodo, produtos, produto_atual, argumento)
+          #chamar o notifier.rb para informar que encontrou algo
+          puts "sim"
+        end
+        
+      else
+        #chamar o notifier.rb para falar que o yml está errado
+        raise "[ERRO] Metodo :#{metodo} nao existe!"
       end
     end
   end
