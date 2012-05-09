@@ -1,7 +1,8 @@
 require 'rubygems'
 require 'twitter'
 
-# TODO refatorar essa porra ?
+#criado o https://twitter.com/#!/pricemonitr
+
 Twitter.configure do |config|
   config.consumer_key = "xjIOgwyObkdaGXbWeVfNOw"
   config.consumer_secret = "6GJnsWWbOTcJv43UgEHRoD23J2luUKMQ6VPIvOtRFM"
@@ -9,9 +10,8 @@ Twitter.configure do |config|
   config.oauth_token_secret = "9YSlwTHt6qgA0EtJfZix4MgUJUe4WC9QYyAbNzxHos"
 end
 
-#criado o https://twitter.com/#!/pricemonitr
-# TODO falta criar as notificações pro celular da Natasha
-# E definir as regras
-
-# testado e funcionando
-Twitter.update("teste")
+class Twitter
+	def post message
+		Twitter.update("#{message}")
+	end
+end
