@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'yaml'
 require_relative 'db'
+require_relative 'crawler'
 
 class PriceMonitr
   
@@ -27,7 +28,12 @@ class PriceMonitr
 
         # acessa o site e recupera os dados
         puts "Acessando: #{base_url}#{produto_url}"
-        produto_atual = {:preco => 110.0, :estoque => true}
+
+
+        scraper = Scraper::SearchScraper.new
+        scraper.search(base_url, produto_url, regra_preco, regra_estoque)
+
+        produto_atual = {:preco => scraper.preco, :estoque => scraper.estoque}
 
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
@@ -54,6 +60,9 @@ class PriceMonitr
         # verifica se a rule passou
         if send(metodo, produtos, produto_atual, argumento)
           #chamar o notifier.rb para informar que encontrou algo
+          twitter = Twitter.new
+          #TODO finalizar o tweet bonitinho p/ envio
+          twitter.post('Rule Passou!')
           puts "sim"
         end
         
