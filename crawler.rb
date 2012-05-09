@@ -16,14 +16,16 @@ module Scraper
     	Capybara.app_host = base_url
     	visit(url)
 
-    	# Funciona
-    	#puts page.find('div.saleprice-dec font span').text
+		preco = page.find(regra_preco).text
+    	estoque = page.find(regra_estoque).text
 
-    	# Não funciona (algum pau na String)
-		@preco = page.find(regra_preco).text
-    	
-    	#@estoque = page.find(regra_estoque).text
+        {:preco => preco, :estoque => estoque}
     end
 
   end
 end
+
+
+# TODO remover.. só pra Debbug
+#scraper = Scraper::SearchScraper.new
+#scraper.search("http://www.stylinonline.com", "/hoodie-batman-joker-face-view-zip.html", "", "")

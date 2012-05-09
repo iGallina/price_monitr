@@ -8,6 +8,8 @@ class PriceMonitr
   def initialize
     # instancia o DBUtil
     @db_util = DBUtil.new
+    @scraper = Scraper::SearchScraper.new
+
   end
   
   def executar!
@@ -15,25 +17,21 @@ class PriceMonitr
     @sites = YAML::load_file('sites.yml')
     
     @sites.each do |site|
-      base_url = site[1][:base_url]
-      regra_preco = site[1][:regra_preco]
-      regra_estoque = site[1][:regra_estoque]
+      base_url = site[1]['base_url']
+      regra_preco = site[1]['regra_preco']
+      regra_estoque = site[1]['regra_estoque']
 
       produtos = site[1]['produtos']
       produtos.each do |produto|
         key = produto[0]
         produto_url = produto[1]['url']
-        nome = produto[1][:nome]
+        nome = produto[1]['nome']
         rules = produto[1]['rules']
 
         # acessa o site e recupera os dados
         puts "Acessando: #{base_url}#{produto_url}"
 
-
-        scraper = Scraper::SearchScraper.new
-        scraper.search(base_url, produto_url, regra_preco, regra_estoque)
-
-        produto_atual = {:preco => scraper.preco, :estoque => scraper.estoque}
+        produto_atual = @scraper.search(base_url, produto_url, regra_preco, regra_estoque)
 
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
