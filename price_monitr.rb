@@ -1,4 +1,4 @@
-#require 'whenever'
+require 'rubygems'
 require 'yaml'
 require_relative 'db'
 

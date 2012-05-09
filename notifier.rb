@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'twitter'
 
 # TODO refatorar essa porra ?

@@ -1,3 +1,5 @@
+source :rubygems
+
 gem 'poltergeist'
 gem 'rufus-scheduler'
 gem 'capybara'

@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sequel'
 require 'sqlite3'
 
