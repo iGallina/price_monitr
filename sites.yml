@@ -1,7 +1,7 @@
 site1:
   base_url: http://www.stylinonline.com
-  regra_preco: css=div.saleprice-dec font span
-  regra_estoque: css=div.inStock-61011
+  regra_preco: div.saleprice-dec font span
+  regra_estoque: div.inStock-61011
   produtos:
     produto1:
       url: /hoodie-batman-joker-face-view-zip.html
