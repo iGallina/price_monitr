@@ -27,3 +27,14 @@ site2:
       rules:
         rule1: preco_20%
         rule2: estoque_sim
+site3:
+  base_url: http://www.focalprice.com
+  regra_preco: div.lagueSelectWarp span#nowprice
+  regra_estoque: span.stock em.green
+  produtos:
+    produto1:
+      url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
+      nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
+      rules:
+        rule1: preco_20%
+        rule2: estoque_sim

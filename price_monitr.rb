@@ -1,7 +1,12 @@
+# encoding: utf-8
+
 require 'rubygems'
 require 'yaml'
+
 require_relative 'db'
 require_relative 'crawler'
+require_relative 'notifier'
+
 
 class PriceMonitr
   
@@ -9,7 +14,7 @@ class PriceMonitr
     # instancia o DBUtil
     @db_util = DBUtil.new
     @scraper = Scraper::SearchScraper.new
-
+    @twitter = TwitterNotifier.new
   end
   
   def executar!
@@ -32,12 +37,21 @@ class PriceMonitr
         puts "Acessando: #{base_url}#{produto_url}"
 
         produto_atual = @scraper.search(base_url, produto_url, regra_preco, regra_estoque)
+        #Verifica se o produto foi corretamente recuperado do Site
+        if !produto_atual
+          next
+        end
 
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
 
-        unless db_produtos.nil?        
-          aplicar_rules! rules, db_produtos, produto_atual
+        unless db_produtos.nil?
+          begin
+            aplicar_rules! rules, db_produtos, produto_atual, nome
+          rescue StandardError => msg_error
+            #chamar o notifier.rb para falar que o yml está errado
+            @twitter.post(msg_error)
+          end
         end
 
         # adiciona no banco o novo produto
@@ -46,27 +60,25 @@ class PriceMonitr
     end
   end
   
-  def aplicar_rules! rules, produtos, produto_atual
-    puts "Aplicando rules: "
+  def aplicar_rules! rules, produtos, produto_atual, nome
+    puts "\tAplicando rules: "
     rules.each do |rule|
       metodo = rule[1].split("_")[0]
       argumento = rule[1].split("_")[1]
 
       if self.respond_to? metodo
-        puts "Executando rule #{metodo} com argumento #{argumento}"
+        puts "\t\tRule #{metodo} com argumento #{argumento}"
         
         # verifica se a rule passou
         if send(metodo, produtos, produto_atual, argumento)
-          #chamar o notifier.rb para informar que encontrou algo
-          twitter = Twitter.new
-          #TODO finalizar o tweet bonitinho p/ envio
-          twitter.post('Rule Passou!')
-          puts "sim"
+          puts "\t\t\tSim"
+          #chama o notifier.rb para informar que encontrou algo no Twitter
+          @twitter.post_rule_update nome, rule[1]
+        else
+          puts "\t\t\tNão"
         end
-        
       else
-        #chamar o notifier.rb para falar que o yml está errado
-        raise "[ERRO] Metodo :#{metodo} nao existe!"
+        raise "[ERRO] A regra #{metodo} não existe! Corrija o arquivo sites.yml"
       end
     end
   end
@@ -94,7 +106,12 @@ class PriceMonitr
       bool = false
     end
     
-    produto_atual[:estoque] == bool
+    last_estoque_db = produtos.order(:id).last[:estoque]
+    if (last_estoque_db != produto_atual[:estoque])
+      produto_atual[:estoque] == bool
+    else
+      false
+    end
   end
   
 end

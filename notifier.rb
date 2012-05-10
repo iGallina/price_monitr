@@ -10,8 +10,24 @@ Twitter.configure do |config|
   config.oauth_token_secret = "9YSlwTHt6qgA0EtJfZix4MgUJUe4WC9QYyAbNzxHos"
 end
 
-class Twitter
+class TwitterNotifier
+  MAX_NAME_LENGTH = 80
+  
 	def post message
-		Twitter.update("#{message}")
+	  time = Time.now
+	  msg = "#{time.strftime('%d.%m.%y %H:%M')} - #{message}"
+	  
+	  puts "\t\t\t#{msg}"
+		Twitter.update("#{msg}")
 	end
+	
+	def post_rule_update produto_nome, rule
+	  if (produto_nome.length > MAX_NAME_LENGTH)
+	    produto_nome = produto_nome[0...MAX_NAME_LENGTH-3] + "..."
+    end
+    
+    msg = "O produto '#{produto_nome}' atende a regra '#{rule}'."
+    post msg
+  end
+	
 end

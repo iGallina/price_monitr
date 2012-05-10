@@ -12,14 +12,39 @@ module Scraper
   class SearchScraper
     include Capybara::DSL
 	
-    def search(base_url, url, regra_preco, regra_estoque)
-    	Capybara.app_host = base_url
-    	visit(url)
+    def search base_url, url, regra_preco, regra_estoque
+      begin
+      	Capybara.app_host = base_url
+      	visit(url)
 
-		preco = page.find(regra_preco).text
-    	estoque = page.find(regra_estoque).text
+        #Preço
+        begin
+  		    preco = page.find(regra_preco).text
+  		    preco.sub! ",", "."
+  	    rescue Capybara::ElementNotFound
+  	      preco = 0.0
+  		  end
+		  
+  		  #Estoque
+  		  if !regra_estoque.nil?
+  		    begin
+        	  page.find(regra_estoque).text
+        	  estoque = true
+      	  rescue Capybara::ElementNotFound
+      	    estoque = false
+  	      end
+        else
+          #Não valida o estoque
+          estoque = true
+        end
 
-        {:preco => preco, :estoque => estoque}
+        {:preco => preco.to_f, :estoque => estoque}
+        
+      rescue Capybara::Poltergeist::TimeoutError
+        puts "\t[ERRO] Timeout ao acessar o site #{base_url}#{url}."
+        
+        false
+      end
     end
 
   end
