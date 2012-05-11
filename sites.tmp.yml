@@ -9,7 +9,7 @@ site1:
       rules:
         rule1: preco_20%
         rule2: estoque_sim
-        rule2: estoque_nao
+        rule3: estoque_nao
     produto2:
       url: /jersey-star-wars-vader-helmet-baseball.html
       nome: Star Wars Vader Baseball Jersey Com Um Nome Muito Grande Que Deve Ser Cortado Para Não Dar Problema Com o Post do Twitter

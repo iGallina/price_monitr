@@ -9,7 +9,7 @@ site1:
       rules:
         rule1: preco_20%
         rule2: estoque_sim
-        rule2: estoque_nao
+        rule3: estoque_nao
     produto2:
       url: /jersey-star-wars-vader-helmet-baseball.html
       nome: Star Wars Vader Baseball Jersey Com Um Nome Muito Grande Que Deve Ser Cortado Para Não Dar Problema Com o Post do Twitter
@@ -24,6 +24,17 @@ site2:
     produto1:
       url: /cosmetic-make-up-88-color-eye-shadow-palette-with-mirror-and-brushes-matte-68065
       nome: Cosmetic Make-Up 88-Color Eye Shadow Palette with Mirror and Brushes (Matte)
+      rules:
+        rule1: preco_20%
+        rule2: estoque_sim
+site3:
+  base_url: http://www.focalprice.com
+  regra_preco: div.lagueSelectWarp span#nowprice
+  regra_estoque: span.stock em.green
+  produtos:
+    produto1:
+      url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
+      nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
       rules:
         rule1: preco_20%
         rule2: estoque_sim

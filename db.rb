@@ -27,8 +27,9 @@ class DBUtil
   end
   
   def add_produto key, url, preco, estoque
-    if get_produtos(key, url).count >= MAX_ROWS
-      @produtos.filter(:key => key, :url => url, :id => @produtos.min(:id)).delete
+    produtos = get_produtos(key, url)
+    if produtos.count >= MAX_ROWS
+      @produtos.filter(:id => produtos.order(:id).first[:id]).delete
     end
     @produtos.insert(:key => key, :url => url, :preco => preco, :estoque => estoque)
   end
