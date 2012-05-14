@@ -18,7 +18,7 @@ class TwitterNotifier
 	  msg = "#{time.strftime('%d.%m.%y %H:%M')} - #{message}"
 	  
 	  puts "\t\t\t#{msg}"
-		#Twitter.update("#{msg}")
+		Twitter.update msg
 	end
 	
 	def post_rule_update produto_nome, rule
