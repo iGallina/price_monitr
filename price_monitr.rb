@@ -39,10 +39,9 @@ class PriceMonitr
         produto_atual = @scraper.search(base_url, produto_url, regra_preco, regra_estoque)
         #Verifica se o produto foi corretamente recuperado do Site
         if !produto_atual
+          atualiza_log
           next
         end
-
-        puts "\t\t\t\tPreco: #{produto_atual[:preco]}"
 
         #Acessar banco para recuperar dados para comparação
         db_produtos = @db_util.get_produtos key, produto_url
@@ -59,8 +58,7 @@ class PriceMonitr
         # adiciona no banco o novo produto
         @db_util.add_produto key, produto_url, produto_atual[:preco], produto_atual[:estoque]
 
-        # atualiza o log
-        puts `echo "" >> cron.log`
+        atualiza_log
       end
     end
   end
@@ -117,6 +115,10 @@ class PriceMonitr
     else
       false
     end
+  end
+
+  def atualiza_log
+    puts `echo "" >> cron.log`
   end
   
 end
