@@ -1,4 +1,4 @@
-#!/usr/bin ruby1.9.1
+#!/usr/bin/ruby1.9.1
 ## TODO ruby1.9.1 e ps -aux
 
 def stop
