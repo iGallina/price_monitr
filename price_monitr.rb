@@ -19,7 +19,7 @@ class PriceMonitr
   
   def executar!
     # le da yml quais sites a serem analisados
-    @sites = YAML::load_file('sites.yml')
+    @sites = YAML::load_file('/home/price/sites.yml')
     
     @sites.each do |site|
       base_url = site[1]['base_url']
