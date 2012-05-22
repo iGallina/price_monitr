@@ -11,7 +11,8 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-database
+database/
+database/produtos.db
 
 # YARD artifacts
 .yardoc
