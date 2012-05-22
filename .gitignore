@@ -22,3 +22,5 @@ doc/
 Gemfile.lock
 
 cron.log
+
+release_1.0/robos.zip
