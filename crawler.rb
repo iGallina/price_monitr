@@ -25,7 +25,10 @@ module Scraper
         
         #Preço
 		    preco = page.find(regra_preco).text
-		    preco.sub! ",", "."
+        preco.sub! ",", "."
+        if preco.empty?
+          return false
+        end
 		  
   		  #Estoque
   		  if !regra_estoque.nil?
