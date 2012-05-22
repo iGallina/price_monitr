@@ -1,12 +1,15 @@
-#!/usr/bin/env ruby​
+#!/usr/bin ruby1.9.1
 ## TODO ruby1.9.1 e ps -aux
+
+RUBY = "ruby1.9.1"
+#RUBY = "ruby"
 
 def stop
 	puts "Stopping..."
 	bash = `ps au | grep cron.rb`
 	bash.each_line do |line|
 		pid = 0
-		if line.include?("ruby cron.rb")
+		if line.include?("#{RUBY} cron.rb")
 			columns = line.split(" ")
 			pid = columns[1]
 		end
@@ -21,7 +24,7 @@ def start
 	puts "Starting..."
 	puts `echo "Servidor iniciado." >> cron.log`
 
-	bash = `ruby cron.rb >> cron.log &`
+	bash = `#{RUBY} cron.rb >> cron.log &`
 	puts bash
 end
 
