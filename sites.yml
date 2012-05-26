@@ -8,13 +8,12 @@ site1:
       nome: Joker Costume Hoodie
       rules:
         rule1: preco_20%
-        rule2: estoque_sim
-        rule3: estoque_nao
+        rule2: estoque
     produto2:
       url: /jersey-star-wars-vader-helmet-baseball.html
       nome: Star Wars Vader Baseball Jersey Com Um Nome Muito Grande Que Deve Ser Cortado Para Não Dar Problema Com o Post do Twitter
       rules:
-        rule1: preco_10%
+        rule1: preco
         rule2: estoque_sim
 site2:
   base_url: http://dx.com
@@ -26,7 +25,7 @@ site2:
       nome: Cosmetic Make-Up 88-Color Eye Shadow Palette with Mirror and Brushes (Matte)
       rules:
         rule1: preco_20%
-        rule2: estoque_sim
+        rule2: estoque_nao
 site3:
   base_url: http://www.focalprice.com
   regra_preco: div.lagueSelectWarp span#nowprice
@@ -36,5 +35,5 @@ site3:
       url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
       nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
       rules:
-        rule1: preco_20%
+        rule1: preco_10%
         rule2: estoque_sim

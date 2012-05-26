@@ -20,6 +20,7 @@ class PriceMonitr
   def executar!
     # le da yml quais sites a serem analisados
     @sites = YAML::load_file('/home/price/sites.yml')
+    #@sites = YAML::load_file('sites.yml')
     
     @sites.each do |site|
       base_url = site[1]['base_url']
@@ -34,7 +35,8 @@ class PriceMonitr
         rules = produto[1]['rules']
 
         # acessa o site e recupera os dados
-        puts "Acessando: #{base_url}#{produto_url}"
+	time = Time.now
+        puts "#{time.strftime('%d/%m/%Y %H:%M:%S')}\nAcessando: #{base_url}#{produto_url}"
 
         produto_atual = @scraper.search(base_url, produto_url, regra_preco, regra_estoque)
         #Verifica se o produto foi corretamente recuperado do Site
@@ -70,7 +72,11 @@ class PriceMonitr
       argumento = rule[1].split("_")[1]
 
       if self.respond_to? metodo
-        puts "\t\tRule #{metodo} com argumento #{argumento}"
+	if argumento.nil?
+	  puts "\t\tRule #{metodo} sem argumento"
+	else
+	  puts "\t\tRule #{metodo} com argumento #{argumento}"
+	end
         
         # verifica se a rule passou
         if send(metodo, produtos, produto_atual, argumento)
@@ -87,7 +93,12 @@ class PriceMonitr
   end
   
   def preco produtos, produto_atual, percento
-    percento = percento.sub "%", ""
+    if percento.nil?
+      percento = "0"
+    else
+      percento = percento.sub "%", ""
+    end
+
     preco_atual = produto_atual[:preco]
     media = 0
     
@@ -99,11 +110,13 @@ class PriceMonitr
     percento = percento.to_f / 100
     limite = media * percento
     
-    preco_atual >= (media + limite) || preco_atual <= (media - limite)
+    preco_atual > (media + limite) || preco_atual < (media - limite)
   end
   
   def estoque produtos, produto_atual, estoque
-    if estoque == "sim"
+    if estoque.nil?
+      bool = produto_atual[:estoque]
+    elsif estoque == "sim"
       bool = true
     else
       bool = false
@@ -118,13 +131,13 @@ class PriceMonitr
   end
 
   def atualiza_log
-    puts `echo "" >> cron.log`
+    puts `echo "" >> logs/cron.log`
   end
   
 end
 
-pm = PriceMonitr.new
-pm.executar!
+#pm = PriceMonitr.new
+#pm.executar!
 
 
 # aguarda retorno para cada um dos sites, caso contrário agenda uma chamada em breve
