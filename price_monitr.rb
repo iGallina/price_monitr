@@ -136,8 +136,9 @@ class PriceMonitr
   
 end
 
-#pm = PriceMonitr.new
-#pm.executar!
+# Executa a primeira vez quando o PriceMonitr é inicializado
+pm = PriceMonitr.new
+pm.executar!
 
 
 # aguarda retorno para cada um dos sites, caso contrário agenda uma chamada em breve
