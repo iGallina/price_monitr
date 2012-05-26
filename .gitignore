@@ -13,6 +13,7 @@ test/version_tmp
 tmp
 database/
 database/produtos.db
+logs/
 
 # YARD artifacts
 .yardoc
