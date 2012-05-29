@@ -6,6 +6,8 @@ site1:
     produto1:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
       rules:
         rule1: preco_20%
         rule2: estoque
@@ -34,6 +36,8 @@ site3:
     produto1:
       url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
       nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
+      regra_preco: div.lagueSelectWarp span#nowprice
+      regra_estoque: span.stock em.green
       rules:
         rule1: preco_10%
         rule2: estoque_sim

@@ -43,6 +43,7 @@ module Scraper
           estoque = true
         end
 
+        #Retorna um Hash com o preço e o estoque
         {:preco => preco.to_f, :estoque => estoque}
         
       rescue Capybara::Poltergeist::TimeoutError

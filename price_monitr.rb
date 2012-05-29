@@ -33,12 +33,26 @@ class PriceMonitr
         produto_url = produto[1]['url']
         nome = produto[1]['nome']
         rules = produto[1]['rules']
+        
+        # verifica se o produto sobrescreve as regras de preço
+        if produto[1]['regra_preco']
+          regra_preco_produto = produto[1]['regra_preco']
+        else
+          regra_preco_produto = regra_preco
+        end
+        
+        # verifica se o produto sobrescreve as regras de preço
+        if produto[1]['regra_estoque']
+          regra_estoque_produto = produto[1]['regra_estoque']
+        else
+          regra_estoque_produto = regra_estoque
+        end
 
         # acessa o site e recupera os dados
-	time = Time.now
+        time = Time.now
         puts "#{time.strftime('%d/%m/%Y %H:%M:%S')}\nAcessando: #{base_url}#{produto_url}"
 
-        produto_atual = @scraper.search(base_url, produto_url, regra_preco, regra_estoque)
+        produto_atual = @scraper.search(base_url, produto_url, regra_preco_produto, regra_estoque_produto)
         #Verifica se o produto foi corretamente recuperado do Site
         if !produto_atual
           atualiza_log
@@ -72,11 +86,11 @@ class PriceMonitr
       argumento = rule[1].split("_")[1]
 
       if self.respond_to? metodo
-	if argumento.nil?
-	  puts "\t\tRule #{metodo} sem argumento"
-	else
-	  puts "\t\tRule #{metodo} com argumento #{argumento}"
-	end
+	      if argumento.nil?
+	        puts "\t\tRule #{metodo} sem argumento"
+	      else
+	        puts "\t\tRule #{metodo} com argumento #{argumento}"
+	      end
         
         # verifica se a rule passou
         if send(metodo, produtos, produto_atual, argumento)
