@@ -10,6 +10,8 @@ require_relative 'notifier'
 
 class PriceMonitr
   
+  DAY_IN_SECS = 86400
+  
   def initialize
     # instancia o DBUtil
     @db_util = DBUtil.new
@@ -53,9 +55,28 @@ class PriceMonitr
         puts "#{time.strftime('%d/%m/%Y %H:%M:%S')}\nAcessando: #{base_url}#{produto_url}"
 
         produto_atual = @scraper.search(base_url, produto_url, regra_preco_produto, regra_estoque_produto)
+        
         #Verifica se o produto foi corretamente recuperado do Site
         if !produto_atual
           atualiza_log
+          
+          #Verifica se há algum erro anterior e se este já aconteceu a mais de 1 dia (24h)
+          erros_acessos = @db_util.get_erros_acessos key, produto_url
+          if erros_acessos.count > 0
+            #Verifica se já passou 1 dia
+            diff_time = Time.now - erros_acessos.first[:hora_acesso]
+            if diff_time >= DAY_IN_SECS
+              #Notifica que o erro está acontecendo
+              @twitter.post_erro_acesso nome
+              
+              #Remove da tabela esse erro de acesso para reiniciar a contagem
+              @db_util.delete_erros_acessos key, produto_url
+            end
+          end
+          
+          #Caso tenha acontecido algum erro atualiza o banco informando que não encontrou o site
+          @db_util.atualiza_erro_acesso key, produto_url
+          
           next
         end
 
@@ -73,6 +94,9 @@ class PriceMonitr
 
         # adiciona no banco o novo produto
         @db_util.add_produto key, produto_url, produto_atual[:preco], produto_atual[:estoque]
+        
+        # remove do banco qualquer erro de acesso a esse produto
+        @db_util.delete_erros_acessos key, produto_url
 
         atualiza_log
       end

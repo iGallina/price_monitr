@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rubygems'
 require 'twitter'
 
@@ -12,6 +14,7 @@ end
 
 class TwitterNotifier
   MAX_NAME_LENGTH = 80
+  MAX_NAME_LENGTH_ERRO_MSG = 69
   
 	def post message
 	  time = Time.now
@@ -27,6 +30,15 @@ class TwitterNotifier
     end
     
     msg = "O produto '#{produto_nome}' atende a regra '#{rule}'."
+    post msg
+  end
+  
+  def post_erro_acesso produto_nome
+	  if (produto_nome.length > MAX_NAME_LENGTH_ERRO_MSG)
+	    produto_nome = produto_nome[0...MAX_NAME_LENGTH_ERRO_MSG-3] + "..."
+    end
+    
+    msg = "O produto '#{produto_nome}' não está acessível por mais de 1 dia."
     post msg
   end
 	
