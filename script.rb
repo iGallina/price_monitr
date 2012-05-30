@@ -10,7 +10,6 @@ def stop
 	bash = `ps aux | grep cron.rb`
 	bash.each_line do |line|
 		pid = 0
-		puts line
 		if line.include?("#{RUBY_BIN} cron.rb")
 			columns = line.split(" ")
 			pid = columns[1]
