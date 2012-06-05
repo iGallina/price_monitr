@@ -23,11 +23,18 @@ class PriceMonitr
     # le da yml quais sites a serem analisados
     @sites = YAML::load_file('/home/price/sites.yml')
     #@sites = YAML::load_file('sites.yml')
-    
+    @regras = YAML::load_file('regras.yml')
+
     @sites.each do |site|
+      #Recupera as regras desse site
+      regras = @regras[site[0]]
+
       base_url = site[1]['base_url']
-      regra_preco = site[1]['regra_preco']
-      regra_estoque = site[1]['regra_estoque']
+      regra_preco = regras['regra_preco']
+      regra_estoque = regras['regra_estoque']
+
+      #Recupera os tipos diferentes de regras desse site
+      tipos_regras = regras['tipos']
 
       produtos = site[1]['produtos']
       produtos.each do |produto|
@@ -37,22 +44,49 @@ class PriceMonitr
         rules = produto[1]['rules']
         
         # verifica se o produto sobrescreve as regras de preço
-        if produto[1]['regra_preco']
-          regra_preco_produto = produto[1]['regra_preco']
+        if produto[1]['tipo']
+          #Verifica se tem a regra mapeada
+          if !tipos_regras || !tipos_regras[produto[1]['tipo']]
+            msg_error = "[ERRO] A regra #{produto[1]['tipo']} não existe para o site cuja chave é #{site[0]}! Verifique o arquivo sites.yml"
+            #chamar o notifier.rb para falar que a yml está errada
+            @twitter.post msg_error
+            
+            next
+          end
+          
+          #Verifica a regra do preço
+          regra_temp = tipos_regras[produto[1]['tipo']]['regra_preco']
+          
+          #Verifica se foi informado a regra especifica de preco no produto
+          if regra_temp
+            regra_preco_produto = regra_temp
+          else
+            regra_preco_produto = regra_preco
+          end
+          
+          #Verifica a regra do estoque
+          regra_temp = tipos_regras[produto[1]['tipo']]['regra_estoque']
+          
+          #Verifica se foi informado a regra especifica de estoque no produto
+          if regra_temp
+            regra_estoque_produto = regra_temp
+          else
+            regra_estoque_produto = regra_estoque
+          end
+          
         else
           regra_preco_produto = regra_preco
-        end
-        
-        # verifica se o produto sobrescreve as regras de preço
-        if produto[1]['regra_estoque']
-          regra_estoque_produto = produto[1]['regra_estoque']
-        else
           regra_estoque_produto = regra_estoque
         end
 
         # acessa o site e recupera os dados
         time = Time.now
-        puts "#{time.strftime('%d/%m/%Y %H:%M:%S')}\nAcessando: #{base_url}#{produto_url}"
+        if produto[1]['tipo']
+          tipo_str = "tipo: #{produto[1]['tipo']}" 
+        else
+          tipo_str = ""
+        end
+        puts "#{time.strftime('%d/%m/%Y %H:%M:%S')}\nAcessando: #{base_url}#{produto_url} #{tipo_str}"
 
         produto_atual = @scraper.search(base_url, produto_url, regra_preco_produto, regra_estoque_produto)
         
@@ -87,8 +121,8 @@ class PriceMonitr
           begin
             aplicar_rules! rules, db_produtos, produto_atual, nome
           rescue StandardError => msg_error
-            #chamar o notifier.rb para falar que o yml está errado
-            @twitter.post(msg_error)
+            #chamar o notifier.rb para falar que a yml está errada
+            @twitter.post msg_error
           end
         end
 

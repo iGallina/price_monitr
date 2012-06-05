@@ -1,17 +1,21 @@
 site1:
   base_url: http://www.stylinonline.com
-  regra_preco: div.saleprice-dec font span
-  regra_estoque: div.inStock-61011
   produtos:
     produto1:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      tipo: small
       rules:
         rule1: preco_20%
         rule2: estoque
     produto2:
+      url: /hoodie-batman-joker-face-view-zip.html
+      nome: Joker Costume Hoodie
+      tipo: large
+      rules:
+        rule1: preco_20%
+        rule2: estoque
+    produto3:
       url: /jersey-star-wars-vader-helmet-baseball.html
       nome: Star Wars Vader Baseball Jersey Com Um Nome Muito Grande Que Deve Ser Cortado Para Não Dar Problema Com o Post do Twitter
       rules:
@@ -19,8 +23,6 @@ site1:
         rule2: estoque_sim
 site2:
   base_url: http://dx.com
-  regra_preco: div.product_info span#price
-  regra_estoque:
   produtos:
     produto1:
       url: /cosmetic-make-up-88-color-eye-shadow-palette-with-mirror-and-brushes-matte-68065
@@ -30,14 +32,10 @@ site2:
         rule2: estoque_nao
 site3:
   base_url: http://www.focalprice.com
-  regra_preco: div.lagueSelectWarp span#nowprice
-  regra_estoque: span.stock em.green
   produtos:
     produto1:
       url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
       nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
-      regra_preco: div.lagueSelectWarp span#nowprice
-      regra_estoque: span.stock em.green
       rules:
         rule1: preco_10%
         rule2: estoque_sim

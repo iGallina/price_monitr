@@ -1,0 +1,28 @@
+site1:
+  base_url: http://www.stylinonline.com
+  regra_preco: div.saleprice-dec font span
+  regra_estoque: div.inStock-61011
+  tipos:
+    small:
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
+    medium:
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
+    large:
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
+    x_large:
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
+    xx_large:
+      regra_preco: div.saleprice-dec font span
+      regra_estoque: div.inStock-61011
+site2:
+  base_url: http://dx.com
+  regra_preco: div.product_info span#price
+  regra_estoque:
+site3:
+  base_url: http://www.focalprice.com
+  regra_preco: div.lagueSelectWarp span#nowprice
+  regra_estoque: span.stock em.green
