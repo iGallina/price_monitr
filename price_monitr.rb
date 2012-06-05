@@ -122,7 +122,11 @@ class PriceMonitr
             aplicar_rules! rules, db_produtos, produto_atual, nome
           rescue StandardError => msg_error
             #chamar o notifier.rb para falar que a yml está errada
-            @twitter.post msg_error
+            if msg_error.start_with? "[ERRO]"
+              @twitter.post msg_error
+            else
+              puts msg_error
+            end
           end
         end
 
