@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'yaml'
+require 'cgi'
 
 require_relative 'db'
 require_relative 'crawler'
@@ -47,7 +48,7 @@ class PriceMonitr
         if produto[1]['tipo']
           #Verifica se tem a regra mapeada
           if !tipos_regras || !tipos_regras[produto[1]['tipo']]
-            msg_error = "[ERRO] A regra #{produto[1]['tipo']} não existe para o site cuja chave é #{site[0]}! Verifique o arquivo sites.yml"
+            msg_error = "[ERRO] A regra '#{produto[1]['tipo']}' não existe para o site #{tinyurl(base_url+produto_url)}! Verifique o arquivo sites.yml."
             #chamar o notifier.rb para falar que a yml está errada
             @twitter.post msg_error
             
@@ -208,6 +209,18 @@ class PriceMonitr
 
   def atualiza_log
     puts `echo "" >> logs/cron.log`
+  end
+  
+  def tinyurl(url)
+    tinyurl = nil
+    Kernel.open( "|-", "r" ) do |f|
+      if f
+        tinyurl = f.read
+      else
+        exec "curl", "-s", "http://tinyurl.com/api-create.php?url=#{CGI.escape(url)}"
+      end
+    end
+    tinyurl
   end
   
 end
