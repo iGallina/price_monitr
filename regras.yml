@@ -4,20 +4,20 @@ site1:
   regra_estoque: div.inStock-61011
   tipos:
     small:
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      regra_preco: tr.yswOptionSmall td.yswOptionPrice
+      regra_estoque: tr.yswOptionSmall td.yswOptionStatus
     medium:
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      regra_preco: tr.yswOptionMedium td.yswOptionPrice
+      regra_estoque: tr.yswOptionMedium td.yswOptionStatus
     large:
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      regra_preco: tr.yswOptionLarge td.yswOptionPrice
+      regra_estoque: tr.yswOptionLarge td.yswOptionStatus
     x_large:
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      regra_preco: tr.yswOptionX-Large td.yswOptionPrice
+      regra_estoque: tr.yswOptionX-Large td.yswOptionStatus
     xx_large:
-      regra_preco: div.saleprice-dec font span
-      regra_estoque: div.inStock-61011
+      regra_preco: tr.yswOptionXX-Large td.yswOptionPrice
+      regra_estoque: tr.yswOptionXX-Large td.yswOptionStatus
 site2:
   base_url: http://dx.com
   regra_preco: div.product_info span#price
