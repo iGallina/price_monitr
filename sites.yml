@@ -6,21 +6,148 @@ site1:
       nome: Joker Costume Hoodie
       tipo: small
       rules:
-        rule1: preco_20%
+        rule1: preco_5%
         rule2: estoque
     produto2:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
       tipo: large
       rules:
-        rule1: preco_20%
+        rule1: preco_5%
         rule2: estoque
     produto3:
-      url: /jersey-star-wars-vader-helmet-baseball.html
-      nome: Star Wars Vader Baseball Jersey Com Um Nome Muito Grande Que Deve Ser Cortado Para Não Dar Problema Com o Post do Twitter
+      url: /hoodie-batman-joker-face-view-zip.html
+      nome: Joker Costume Hoodie
+      tipo: medium
       rules:
-        rule1: preco
-        rule2: estoque_sim
+        rule1: preco_5%
+        rule2: estoque
+	produto4:
+      url: /hoodie-batman-joker-face-view-zip.html
+      nome: Joker Costume Hoodie
+      tipo: x-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto5:
+      url: /hoodie-batman-joker-face-view-zip.html
+      nome: Joker Costume Hoodie
+      tipo: xx-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto6:
+      url: /hoodie-venom-costume-zip.html
+      nome: Venom Costume Hoodie
+      tipo: medium
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto7:
+      url: /hoodie-venom-costume-zip.html
+      nome: Venom Costume Hoodie
+      tipo: large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto8:
+      url: /hoodie-venom-costume-zip.html
+      nome: Venom Costume Hoodie
+      tipo: x-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto9:
+      url: /hoodie-venom-costume-zip.html
+      nome: Venom Costume Hoodie
+      tipo: xx-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto10:
+      url: /hoodie-iron-man-my-suit-zip.html
+      nome: Iron Man Hoodie
+      tipo: small
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto11:
+      url: /hoodie-iron-man-my-suit-zip.html
+      nome: Iron Man Hoodie
+      tipo: medium
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto12:
+      url: /hoodie-iron-man-my-suit-zip.html
+      nome: Iron Man Hoodie
+      tipo: large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto13:
+      url: /hoodie-iron-man-my-suit-zip.html
+      nome: Iron Man Hoodie
+      tipo: x-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto14:
+      url: /hoodie-captain-america-shield-logo-zip.html
+      nome: Captain America Shield Hoodie
+      tipo: small
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto15:
+      url: /hoodie-captain-america-shield-logo-zip.html
+      nome: Captain America Shield Hoodie
+      tipo: medium
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto16:
+      url: /hoodie-captain-america-shield-logo-zip.html
+      nome: Captain America Shield Hoodie
+      tipo: large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto17:
+      url: /hoodie-captain-america-shield-logo-zip.html
+      nome: Captain America Shield Hoodie
+      tipo: x-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto18:
+      url: /hoodie-aquaman-costume.html
+      nome: Aquaman Costume Hoodie
+      tipo: small
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto19:
+      url: /hoodie-aquaman-costume.html
+      nome: Aquaman Costume Hoodie
+      tipo: medium
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto20:
+      url: /hoodie-aquaman-costume.html
+      nome: Aquaman Costume Hoodie
+      tipo: large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
+	produto21:
+      url: /hoodie-aquaman-costume.html
+      nome: Aquaman Costume Hoodie
+      tipo: x-large
+      rules:
+        rule1: preco_5%
+        rule2: estoque
 site2:
   base_url: http://dx.com
   produtos:
@@ -28,8 +155,8 @@ site2:
       url: /cosmetic-make-up-88-color-eye-shadow-palette-with-mirror-and-brushes-matte-68065
       nome: Cosmetic Make-Up 88-Color Eye Shadow Palette with Mirror and Brushes (Matte)
       rules:
-        rule1: preco_20%
-        rule2: estoque_nao
+        rule1: preco
+        rule2: estoque
 site3:
   base_url: http://www.focalprice.com
   produtos:
@@ -37,5 +164,5 @@ site3:
       url: /HJR04B/Heineken_Beer_Smoking_Set_Cigarette_Case__Lighter_Black.html
       nome: Heineken Beer Smoking Set Cigarette Case + Lighter (Black)
       rules:
-        rule1: preco_10%
-        rule2: estoque_sim
+        rule1: preco
+        rule2: estoque
