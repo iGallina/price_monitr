@@ -1,8 +1,8 @@
 #!/usr/bin/ruby1.9.1
 ## TODO ruby1.9.1 e ps -aux
 
-RUBY_BIN = "ruby1.9.1"
-#RUBY_BIN = "ruby"
+# RUBY_BIN = "ruby1.9.1"
+RUBY_BIN = "ruby"
 
 def stop
 	puts "Stopping..."

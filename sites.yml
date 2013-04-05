@@ -22,126 +22,126 @@ site1:
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto4:
+    produto4:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
       tipo: x-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto5:
+    produto5:
       url: /hoodie-batman-joker-face-view-zip.html
       nome: Joker Costume Hoodie
       tipo: xx-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto6:
+    produto6:
       url: /hoodie-venom-costume-zip.html
       nome: Venom Costume Hoodie
       tipo: medium
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto7:
+    produto7:
       url: /hoodie-venom-costume-zip.html
       nome: Venom Costume Hoodie
       tipo: large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto8:
+    produto8:
       url: /hoodie-venom-costume-zip.html
       nome: Venom Costume Hoodie
       tipo: x-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto9:
+    produto9:
       url: /hoodie-venom-costume-zip.html
       nome: Venom Costume Hoodie
       tipo: xx-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto10:
+    produto10:
       url: /hoodie-iron-man-my-suit-zip.html
       nome: Iron Man Hoodie
       tipo: small
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto11:
+    produto11:
       url: /hoodie-iron-man-my-suit-zip.html
       nome: Iron Man Hoodie
       tipo: medium
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto12:
+    produto12:
       url: /hoodie-iron-man-my-suit-zip.html
       nome: Iron Man Hoodie
       tipo: large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto13:
+    produto13:
       url: /hoodie-iron-man-my-suit-zip.html
       nome: Iron Man Hoodie
       tipo: x-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto14:
+    produto14:
       url: /hoodie-captain-america-shield-logo-zip.html
       nome: Captain America Shield Hoodie
       tipo: small
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto15:
+    produto15:
       url: /hoodie-captain-america-shield-logo-zip.html
       nome: Captain America Shield Hoodie
       tipo: medium
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto16:
+    produto16:
       url: /hoodie-captain-america-shield-logo-zip.html
       nome: Captain America Shield Hoodie
       tipo: large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto17:
+    produto17:
       url: /hoodie-captain-america-shield-logo-zip.html
       nome: Captain America Shield Hoodie
       tipo: x-large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto18:
+    produto18:
       url: /hoodie-aquaman-costume.html
       nome: Aquaman Costume Hoodie
       tipo: small
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto19:
+    produto19:
       url: /hoodie-aquaman-costume.html
       nome: Aquaman Costume Hoodie
       tipo: medium
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto20:
+    produto20:
       url: /hoodie-aquaman-costume.html
       nome: Aquaman Costume Hoodie
       tipo: large
       rules:
         rule1: preco_5%
         rule2: estoque
-	produto21:
+    produto21:
       url: /hoodie-aquaman-costume.html
       nome: Aquaman Costume Hoodie
       tipo: x-large

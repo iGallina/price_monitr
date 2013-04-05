@@ -1,2 +1,2 @@
 #!/bin/bash
-scp sites.yml price@50.56.237.227:/home/price/
+scp sites.yml price@198.101.238.7:/home/price/
